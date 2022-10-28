@@ -18,7 +18,7 @@ function submitWarrior(event) {
         power: warriorPower.value
     }
 
-    axios.post('', bodyObj)
+    axios.post('http://localhost:4001/submitwarrior', bodyObj)
     .then((response) => {
         alert(bodyObj.name + ' added to warrior list!')
     })
@@ -35,7 +35,7 @@ function submitWeapon(event) {
         power: weaponPower.value
     }
 
-    axios.post('', bodyObj)
+    axios.post('http://localhost:4001/submitweapon', bodyObj)
     .then((response) => {
         alert(bodyObj.name + ' added to weapons store!')
     })
@@ -52,7 +52,7 @@ function pair(event) {
         weapon: pairWeapon.value
     }
 
-    axios.post('', bodyObj)
+    axios.post('http://localhost:4001/pair', bodyObj)
     .then((response) => {
         alert(bodyObj.warrior + ' ' + bodyObj.weapon + ' are paired!')
     })
@@ -62,7 +62,9 @@ function pair(event) {
 }
 
 function showWarriorWeapons() {
-    axios.get('')
+    displaySection.innerHTML = ''
+
+    axios.get('http://localhost:4001/getpairs')
     .then((response) => {
         let pairingArray = response.data
 
@@ -73,8 +75,8 @@ function showWarriorWeapons() {
             let pairWeaponNameElement = document.createElement('span')
             let pairSentenceElement = document.createElement('span')
             
-            pairWarriorNameElement.innerHTML = pairing.warrior
-            pairWeaponNameElement.innerHTML = pairing.weapon
+            pairWarriorNameElement.innerHTML = pairing.war
+            pairWeaponNameElement.innerHTML = pairing.wea
             pairSentenceElement.innerHTML = ' has '
 
             pairContainerElement.appendChild(pairWarriorNameElement)
